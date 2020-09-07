@@ -61,6 +61,7 @@
 			<h1 class="text-center">Search Donors</h1>
 			<hr class="white-bar">
 			<br>
+			<form action="" method="get">
 			<div class="form-inline text-center" style="padding: 40px 0px 0px 5px;">
 							<div class="form-group text-center center-aligned">
 								<select style="width: 220px; height: 45px;" name="city" id="city" class="form-control demo-default" required>
@@ -81,9 +82,10 @@
 								</select>
 							</div>
 							<div class="form-group center-aligned">
-								<button type="button" class="btn btn-lg btn-default" id="search">Search</button>
+								<button type="submit" class="btn btn-lg btn-default" id="search">Search</button>
 							</div>
 						</div>
+</form>
 		</div>
 	</div>
 </div>
