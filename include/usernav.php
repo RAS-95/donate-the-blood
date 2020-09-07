@@ -26,7 +26,7 @@
       </li>
 
       <?php
-      if($_COOKIE['logged_in']=="0")
+      if($_COOKIE['logged_in']=="0" || !isset($_COOKIE['logged_in']))
       {
       
         echo '

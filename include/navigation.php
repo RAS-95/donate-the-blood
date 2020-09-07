@@ -32,8 +32,8 @@
       </li>
   <?php 
   // echo $_COOKIE['logged_in'];
-      if($_COOKIE['logged_in']=="0")
-      { 
+  if($_COOKIE['logged_in']=="0" || !isset($_COOKIE['logged_in']))
+  { 
         echo '
         <li class="nav-item">
         <a class="nav-link" href="signin.php">Signin</a>
