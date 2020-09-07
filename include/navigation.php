@@ -31,9 +31,14 @@
         <a class="nav-link" href="search.php">Search</a>
       </li>
 
-      <li class="nav-item">
+      if(!isset($_SESSION['user_id']))
+      { 
+        echo '
+        <li class="nav-item">
         <a class="nav-link" href="signin.php">Signin</a>
-      </li>
+        </li>
+        ';
+      }
       
       <li class="nav-item">
         <a class="nav-link" href="about.php">About Us</a>
