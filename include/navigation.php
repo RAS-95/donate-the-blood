@@ -31,7 +31,7 @@
         <a class="nav-link" href="search.php">Search</a>
       </li>
   <?php 
-  echo $_COOKIE['logged_in'];
+  // echo $_COOKIE['logged_in'];
       if($_COOKIE['logged_in']==0)
       { 
         echo '
