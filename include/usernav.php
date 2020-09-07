@@ -26,7 +26,7 @@
       </li>
 
       <?php
-      if($_COOKIE['logged_in']==0)
+      if(!isset($_SESSION['user_id']))
       {
       
         echo '

@@ -32,7 +32,7 @@
       </li>
   <?php 
   // echo $_COOKIE['logged_in'];
-      if($_COOKIE['logged_in']==0)
+      if(!isset($_SESSION['user_id']))
       { 
         echo '
         <li class="nav-item">
