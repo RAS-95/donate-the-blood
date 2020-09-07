@@ -263,7 +263,7 @@
 
 				if(mysqli_query($connection,$sql)){
 
-					header("Location: ../donatetheblood/signin.php ");
+					header("Location: ../signin.php ");
 
   
 
