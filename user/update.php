@@ -320,6 +320,8 @@
 						$sql = "DELETE FROM donor WHERE id='$id'";
 						mysqli_query($connection, $sql);
 						session_destroy();
+						setcookie("logged_in", "", time()-3600, "/");
+
 						echo 
 						'
 						<script>
