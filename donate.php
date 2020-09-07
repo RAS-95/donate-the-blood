@@ -258,6 +258,7 @@
 				
 				//$password = md5($password) ;
 				$DonorDOB = $year."-".$month."-".$day;
+				$password = md5($password);
 				$sql = "INSERT INTO donor (name,gender,email,city,dob,contact_no,save_life_date,password,blood_group)  VALUES('$name','$gender','$email','$city','$DonorDOB','$contact','0','$password','$blood_group')";
 
 				if(mysqli_query($connection,$sql)){

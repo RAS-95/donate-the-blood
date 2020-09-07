@@ -39,7 +39,7 @@
 		  //login query
 
 		  if(isset($email)&& isset($password)){
-
+			  $password = md5($password);
 			  $sql = "  SELECT * FROM donor WHERE password ='$password' AND email ='$email' ";
 			  $result= mysqli_query($connection,$sql);
 

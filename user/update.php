@@ -259,14 +259,14 @@
 
 						$oldpassword = $_POST['old_password'];
 
-						if($oldpassword==$dbpassword){
+						if(md5($oldpassword)==$dbpassword){
 							// print_r("passed2");
 							if(strlen($_POST['new_password'])>=6){
 
 
 							if($_POST['new_password']==$_POST['c_password']){
 								// echo "Hello";
-								$password = $_POST['new_password'];
+								$password = md5($_POST['new_password']);
 								$sql = "UPDATE donor SET  password='$password' WHERE id='$id'";
 								if(mysqli_query($connection,$sql))
 								{
@@ -278,12 +278,9 @@
 								';
 								}
 							}else{
-								$passwordError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-													<strong>Passwords are not same!</strong>
-													<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-														<span aria-hidden="true">&times;</span>
-													</button>
-												</div>' ;
+								echo '
+								
+								';
 
 							}
 
@@ -297,23 +294,6 @@
 												</button>
 											</div>' ;
 						}
-
-				// }else{
-
-				// 	$passwordError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-				// 	<strong>Please enter valid password!</strong>
-				// 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				// 	  <span aria-hidden="true">&times;</span>
-				// 	</button>
-				//   </div>' ;
-		
-
-
-
-
-				// }
-
-				
 					
 				  }
 			}else{
@@ -335,7 +315,7 @@
 					$sql = "SELECT * FROM donor WHERE id='$id'";
 					$result= mysqli_query($connection,$sql);
 					$row = mysqli_fetch_assoc($result);
-					if($row['password']==$pass)
+					if($row['password']==md5($pass))
 					{
 						$sql = "DELETE FROM donor WHERE id='$id'";
 						mysqli_query($connection, $sql);
