@@ -25,9 +25,17 @@
         <a class="nav-link" href="search.php">Search</a>
       </li>
 
-      <li class="nav-item">
+      <?php
+      if($_COOKIE['logged_in']==0)
+      {
+      
+        echo '
+        <li class="nav-item">
         <a class="nav-link" href="signin.php">Signin</a>
       </li>
+        ' ;
+            }
+      ?>
       
       <li class="nav-item">
         <a class="nav-link" href="about.php">About Us</a>
