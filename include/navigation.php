@@ -31,6 +31,7 @@
         <a class="nav-link" href="search.php">Search</a>
       </li>
   <?php 
+  echo $_COOKIE['logged_in'];
       if($_COOKIE['logged_in']==0)
       { 
         echo '
@@ -39,7 +40,7 @@
         </li>
         ';
       }
-?>
+      ?>
       <li class="nav-item">
         <a class="nav-link" href="about.php">About Us</a>
       </li>
