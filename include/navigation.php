@@ -30,7 +30,7 @@
       <li class="nav-item">
         <a class="nav-link" href="search.php">Search</a>
       </li>
-
+  <?php 
       if(!isset($_SESSION['user_id']))
       { 
         echo '
@@ -39,7 +39,7 @@
         </li>
         ';
       }
-      
+?>
       <li class="nav-item">
         <a class="nav-link" href="about.php">About Us</a>
       </li>
