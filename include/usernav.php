@@ -26,9 +26,9 @@
       </li>
 
       <?php
-      echo $_SESSION['user_id'];
-  if(!isset($_SESSION['user_id']))
-  {
+      // echo $_SESSION['user_id'];
+      if($_COOKIE['logged_in']=='n' || !isset($_COOKIE['logged_in']))
+      {
       
         echo '
         <li class="nav-item">

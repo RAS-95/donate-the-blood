@@ -51,7 +51,7 @@
 					$_SESSION['name'] = $row['name'];
 					$_SESSION['email'] = $row['email'];
 					$_SESSION['save_life_date'] = $row['save_life_date'];
-					setcookie("logged_in", "1", time()+3600, "/");
+					setcookie("logged_in", "y", time()+3600, "/");
 					header('location:user/index.php');
 				}
 
