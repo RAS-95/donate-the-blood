@@ -32,7 +32,7 @@
       
         echo '
         <li class="nav-item">
-        <a class="nav-link" href="signin.php">Signin</a>
+        <a class="nav-link" href="signin.php">Sign in</a>
       </li>
         ' ;
             }
