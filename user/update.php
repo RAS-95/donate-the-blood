@@ -324,7 +324,7 @@
 						'
 						<script>
 							alert("Sorry to see you go. See you around");
-							window.location.replace("https://ras-donate-blood.herokuapp.com/donatetheblood");
+							window.location.replace("https://ras-donate-blood.herokuapp.com/");
 						</script>
 						';
 					}else
