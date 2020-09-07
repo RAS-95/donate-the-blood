@@ -243,10 +243,10 @@
 				include 'include/sidebar.php';	
 	
 			
-				if(isset($_POST['update_pass']))
+				if(isset($_POST['update_password']))
 				{
 
-
+					// print_r($_POST);
 					 //password input check
 
 		  	// if(!isset($_POST['term'])){
@@ -254,19 +254,29 @@
 					if(isset($_POST['old_password']) && !empty($_POST['old_password'])&& 
 					isset($_POST['c_password']) && !empty($_POST['c_password'])&& 
 					isset($_POST['new_password']) && !empty($_POST['new_password'])){
-						print_r("passes");
+						// print_r("passes");
 						//$oldpassword = md5($_POST['old_password']);
 
 						$oldpassword = $_POST['old_password'];
 
 						if($oldpassword==$dbpassword){
-
+							// print_r("passed2");
 							if(strlen($_POST['new_password'])>=6){
 
 
 							if($_POST['new_password']==$_POST['c_password']){
-								$password = $_POST['password'];
-
+								// echo "Hello";
+								$password = $_POST['new_password'];
+								$sql = "UPDATE donor SET  password='$password' WHERE id='$id'";
+								if(mysqli_query($connection,$sql))
+								{
+								echo 
+								'
+								<script>
+									alert("Password changed successfully");
+								</script>
+								';
+								}
 							}else{
 								$passwordError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
 													<strong>Passwords are not same!</strong>
@@ -280,7 +290,7 @@
 						}
 						else
 						{
-								$termError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+								$passwordError = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
 												<strong>Password should consist of 6 characters!</strong>
 												<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 													<span aria-hidden="true">&times;</span>
@@ -318,6 +328,34 @@
 
 
 
+				}
+				if(isset($_POST['del_ac']))
+				{
+					$pass = $_POST['account_password'];
+					$sql = "SELECT * FROM donor WHERE id='$id'";
+					$result= mysqli_query($connection,$sql);
+					$row = mysqli_fetch_assoc($result);
+					if($row['password']==$pass)
+					{
+						$sql = "DELETE FROM donor WHERE id='$id'";
+						mysqli_query($connection, $sql);
+						session_destroy();
+						echo 
+						'
+						<script>
+							alert("Sorry to see you go. See you around");
+							window.location.replace("http://localhost/donatetheblood");
+						</script>
+						';
+					}else
+					{
+						echo 
+						'
+						<script>
+							alert("Wrong password.");
+						</script>
+						';
+					}
 				}
 		
 
@@ -402,13 +440,13 @@
 			
 				    <div class="form-group">
 						<label for="fullname">Email</label>
-						<input type="email" name="email" id="email" placeholder="Email"  title="Please write correct email" class="form-control" value ="<?php if(isset($email)) echo $email ;?>
+						<input type="email" name="email" id="email" placeholder="Email"  title="Please write correct email" class="form-control" value ="<?php if(isset($email)) echo $email ;?>">
 						<?php if(isset($emailError)) echo $emailError ; ?>
 					</div>
 					
 					<div class=" form-group">
               <label for="contact_no">Contact No</label>
-              <input type="text" name="contact_no" value="" placeholder="03*******" class="form-control" required pattern="^\d{11}$" title="11 numeric characters only" maxlength="11"  <?php if(isset($contact)) echo $contact ;?>  >
+              <input type="text" name="contact_no" value="<?php if(isset($contact)) echo $contact ;?>" placeholder="03*******" class="form-control" required pattern="^\d{11}$" title="11 numeric characters only" maxlength="11">
 			  
 			  <?php if(isset($contactError)) echo $contactError ; ?>
 		    </div><!--End form-group-->
@@ -416,10 +454,59 @@
 					<div class="form-group">
               <label for="city">City</label>
 			  <select name="city" id="city" class="form-control demo-default"  required  >
-			  
-	<option value="District">-- Select --</option><optgroup title="District" label="&raquo; District"></optgroup><option value="Dhaka" >Dhaka</option><option value="Mymensingh" >Mymensingh</option><option value="Rajshahi" >Rajshahi</option><option value="Khulna" >khulna</option><option value="Barisal" >Barisal</option><option value="syllhet" >syllhet</option><option value="Barguna" >Barguna</option><option value="Patuakhali" >Patuakhali</option><option value="Bhola" >Bhola</option><option value="chittagong" >Chittagong</option><option value="Manikganj" >Manikganj</option><option value="Narayanganj" >Narayanganj</option><option value="Narshingdi" >Narshingdi</option><option value="Jassore" >Jassore</option><option value="Jamalpur" >Jamalpur</option><option value="Jaidebpur" >Jaidebpur</option><option value="Comilla" >Comilla</option><option value="Noakhali" >Noakhali</option><option value="Feni" >Feni</option><option value="Faridpur" >Faridpur</option><option value="Gazipur" >Gazipur</option><option value="Gopalganj" >Gopajganj</option><option value="Natore" >Natore</option><option value="Sirajganj" >Sirajganj</option><option value="Munshiganj" >Munshiganj</option><option value="Tangail" >Tangail</option><option value="Sherpur" >Sherpur</option><option value="Rangpur" >Rangpur</option><option value="Bagura" >Bagura</option><option value="Habiganj" >Habiganj</option><option value="Panchagar" >Panchagar</option><option value="chapainababganj" >chapainababganj</option><option value="Kushtiya" >Kushtiya</option><option value="Naogaon" >Naogaon</option><option value="Nilphamary" >Nilphamary</option><option value="Jhenaidaw" >Jhenaidaw</option><option value="Magura" >Magura</option><option value=" Satkhira" >Satkhira</option><option value="Magura" >Magura</option><option value="Pabna" >Pabna</option><option value="Bagerhat" >Bagerhat</option><option value="Manikganj" >Manikganj</option><option value="Chadpur" >Chadpur</option><option value="Netrokona" >Netrokona</option><option value="Barguna" >Barguna</option><option value="Bandarban" >Bandarban</option><option value="Brahmanbaria" >Brahmanbaria</option><option value="Gopalganj" >Gopalganj</option><option value="Naogaon" >Naogaon</option><option value="Lalmonirhat" >Lalmonirhat</option><option value="Thakurgaon" >Thakurgaon</option></select>
-	             
-	               <?php if(isset($city)) echo $city ;?>
+					<optgroup title="District" label="&raquo; District"></optgroup>
+						<option value="Dhaka">Dhaka</option>
+						<option value="Mymensingh" >Mymensingh</option>
+						<option value="Rajshahi" >Rajshahi</option>
+						<option value="Khulna" >khulna</option>
+						<option value="Barisal" >Barisal</option>
+						<option value="syllhet" >syllhet</option>
+						<option value="Barguna">Barguna</option>
+						<option value="Patuakhali" >Patuakhali</option>
+						<option value="Bhola" >Bhola</option>
+						<option value="chittagong" >Chittagong</option>
+						<option value="Manikganj" >Manikganj</option>
+						<option value="Narayanganj" >Narayanganj</option>
+						<option value="Narshingdi" >Narshingdi</option>
+						<option value="Jassore" >Jassore</option>
+						<option value="Jamalpur" >Jamalpur</option>
+						<option value="Jaidebpur" >Jaidebpur</option>
+						<option value="Comilla" >Comilla</option>
+						<option value="Noakhali" >Noakhali</option>
+						<option value="Feni" >Feni</option>
+						<option value="Faridpur" >Faridpur</option>
+						<option value="Gazipur" >Gazipur</option>
+						<option value="Gopalganj" >Gopajganj</option>
+						<option value="Natore" >Natore</option>
+						<option value="Sirajganj" >Sirajganj</option>
+						<option value="Munshiganj" >Munshiganj</option>
+						<option value="Tangail" >Tangail</option>
+						<option value="Sherpur" >Sherpur</option>
+						<option value="Rangpur" >Rangpur</option>
+						<option value="Bagura" >Bagura</option>
+						<option value="Habiganj" >Habiganj</option>
+						<option value="Panchagar" >Panchagar</option>
+						<option value="chapainababganj" >chapainababganj</option>
+						<option value="Kushtiya" >Kushtiya</option>
+						<option value="Naogaon" >Naogaon</option>
+						<option value="Nilphamary" >Nilphamary</option>
+						<option value="Jhenaidaw" >Jhenaidaw</option>
+						<option value="Magura" >Magura</option>
+						<option value=" Satkhira" >Satkhira</option>
+						<option value="Magura" >Magura</option>
+						<option value="Pabna" >Pabna</option>
+						<option value="Bagerhat" >Bagerhat</option>
+						<option value="Manikganj" >Manikganj</option>
+						<option value="Chadpur" >Chadpur</option>
+						<option value="Netrokona" >Netrokona</option>
+						<option value="Barguna" >Barguna</option>
+						<option value="Bandarban" >Bandarban</option>
+						<option value="Brahmanbaria" >Brahmanbaria</option>
+						<option value="Gopalganj" >Gopalganj</option>
+						<option value="Naogaon" >Naogaon</option>
+						<option value="Lalmonirhat" >Lalmonirhat</option>
+						<option value="Thakurgaon" >Thakurgaon</option>
+				</select>
 				 <?php if(isset($cityError)) echo $cityError ; ?>
 			</div><!--city end-->
 
@@ -459,6 +546,7 @@
 							<div class="form-group">
 								<button class="btn btn-lg btn-danger center-aligned" type="submit" name="update_pass">Update Password</button>
 							</div>
+							<input type="hidden" name="update_password" value="true">
 						</form>
 					</div>
 				</div>
@@ -480,14 +568,18 @@
 							<div class="form-group">
 								<button class="btn btn-lg btn-danger center-aligned" type="submit" name="delete_account">Delete Account</button>
 							</div>
-
+							<input type="hidden" name="del_ac" value="true">
 						</form>
 					</div>
 				</div>
 
 			</div>
 		</div>
-	
+<script>
+	var city = "<?php $result= mysqli_query($connection,$sql); $row = mysqli_fetch_assoc($result); echo $row['city']; ?>";
+	$('#city option[value='+city+']').attr('selected','selected');
+	// console.log(city);
+</script>
 <?php
 	
 	
