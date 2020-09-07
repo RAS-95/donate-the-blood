@@ -61,7 +61,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h1 class="text-center"  style="color: white; font-weight: 700;padding: 10px 0 0 0;">Donate The Blood </h1>
-						<hr class="white-bar">
+						<!-- <hr class="white-bar"> -->
 						<p class="text-center pera-text">
 						   Make blood donation your responsibility !!!!
 						</p>
